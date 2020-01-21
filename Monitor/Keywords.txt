@@ -1,0 +1,10 @@
+Mmonitor	KEYWORD1
+Init	KEYWORD2
+getSerialPort	KEYWORD2
+getDestAddress	KEYWORD2
+getMoteID	KEYWORD2
+getParameterID	KEYWORD2
+getIntValue	KEYWORD2
+readMessage	KEYWORD2
+writeMessage	KEYWORD2
+parseMessage	KEYWORD2
