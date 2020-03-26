@@ -2,7 +2,7 @@
 #include <Wire.h>
 #include <Adafruit_HTU21DF.h>
 
-SPXbee cosa;
+SPXbee emisor;
 
 Adafruit_HTU21DF sensor = Adafruit_HTU21DF();
 
@@ -37,29 +37,26 @@ union measurementUnion {
 } medicion;
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
-  cosa.Init();
+  emisor.Init();
   sensor.begin();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
   payload = 0x11;
   messageID = 0x05;
 
-  cosa.writeData(protocolID);
-  cosa.writeData(payload);
-  cosa.writeData(messageID);
-  cosa.writeData(sourceAddressHigh);
-  cosa.writeData(sourceAddressLow);
-  cosa.writeData(destinationAddressHigh);
-  cosa.writeData(destinationAddressLow);
-  cosa.writeData(moteIDHigh);
-  cosa.writeData(moteIDLow);
-  cosa.writeData(moteType);
-  cosa.writeData(measurementType);
+  emisor.writeData(protocolID);
+  emisor.writeData(payload);
+  emisor.writeData(messageID);
+  emisor.writeData(sourceAddressHigh);
+  emisor.writeData(sourceAddressLow);
+  emisor.writeData(destinationAddressHigh);
+  emisor.writeData(destinationAddressLow);
+  emisor.writeData(moteIDHigh);
+  emisor.writeData(moteIDLow);
+  emisor.writeData(moteType);
+  emisor.writeData(measurementType);
 
   timeReference = millis();
   timeBuf[0] = timeReference >> 24;
@@ -68,13 +65,13 @@ void loop() {
   timeBuf[3] = timeReference;
   
   for (int i = 0; i < 4; i++) {
-    cosa.writeData(timeBuf[i]); 
+    emisor.writeData(timeBuf[i]); 
   }
 
   medicion.measurement = sensor.readTemperature();
   
   for (int i = 0; i < 4; i++) {
-    cosa.writeData(medicion.measurementBuf[i]);
+    emisor.writeData(medicion.measurementBuf[i]);
   }
 
   delay(1000);
