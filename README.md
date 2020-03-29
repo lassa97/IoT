@@ -1,5 +1,6 @@
 # IoT
-Código para el desarrollo de una sencilla comunicación inalámbrica entre dos sensores utilizando ZigBee y Arduino.
+
+Código para el desarrollo de una sencilla comunicación inalámbrica entre dos nodos utilizando ZigBee y Arduino.
 
 **Emisor:** Arduino Uno, con módulo ZigBee conectado al puerto serie y el sensor Adafruit HTU21D-F de temperatura y humedad.
 
